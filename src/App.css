@@ -69,3 +69,16 @@
   opacity: 0.5;
   cursor: pointer;
 }
+
+.sidebar-control img{
+  width: 100px;
+}
+
+.sidebar-control {
+  margin-bottom: 2em;
+  text-transform: capitalize;
+}
+
+.offcanvas{
+  width:20% !important;
+} 

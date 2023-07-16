@@ -20,10 +20,10 @@ export default function ControlledPages (props: IPagination) {
         props.currentPage > 5 ? <Pagination.Ellipsis /> : null
       }
       {
-        pagesDisplay.map(pD => (
+        pagesDisplay.map((pD, index) => (
           <>
             {
-              pD > 1 && pD < props.totalPages ? <Pagination.Item onClick={() => props.onPageChange(pD)}>{pD}</Pagination.Item> : null
+              pD > 1 && pD < props.totalPages ? <Pagination.Item key={index} onClick={() => props.onPageChange(pD)}>{pD}</Pagination.Item> : null
             }
           </>
         ))

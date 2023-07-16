@@ -16,3 +16,13 @@ export default function useGetPokemons (page: number) {
     isError: error
   }
 }
+
+export function useGetPokemonTypes () {
+  const { data, error, isLoading } = useSWR(`https://pokeapi.co/api/v2/type/`, fetcher)
+ 
+  return {
+    pokemonTypes: data,
+    isLoadingTypes: isLoading,
+    isError: error
+  }
+}

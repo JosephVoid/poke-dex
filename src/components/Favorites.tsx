@@ -1,4 +1,4 @@
-import { faEdit, faRemove, faSave } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
@@ -25,17 +25,14 @@ export default function Favorites (props: IFavorite) {
     setIsOnEdit(!isOnEdit)
   }
 
-  const handleRemove = () => {
-    let copyFav = [...favPoke].filter(fP => fP.name !== props.name)
-    setFavePoke(copyFav)
-  }
-
   return (
     <div className='sidebar-control'>
       <Card.Img variant="top" src={props.picture} />
       <Card.Body>
         {
-          isOnEdit ? <Form.Control type="text" id={props.name} value={name} size='sm' onChange={(e) => setName(e.target.value)}/> : <Card.Title>{props.name}</Card.Title>
+          isOnEdit 
+          ? <Form.Control type="text" id={props.name} value={name} size='sm' onChange={(e) => setName(e.target.value)}/> 
+          : <Card.Title>{props.name}</Card.Title>
         }
         <Button size='sm' variant="dark" onClick={() => handleChange()} style={{'marginTop':'0.25em'}}> 
           <FontAwesomeIcon icon={isOnEdit ? faSave : faEdit}/> {isOnEdit ? 'Save' : 'Edit Name'}

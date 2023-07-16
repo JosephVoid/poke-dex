@@ -1,8 +1,8 @@
 import React, { useState, Suspense } from 'react';
 import './App.css';
 import PokiLogo from './pokidexlogo.png';
-import {Badge, Button, Card, Col, Dropdown, Form, Offcanvas, OverlayTrigger, Pagination, Row, Tooltip} from 'react-bootstrap';
-import { faSortDesc, faSortAsc, faStar, faEdit } from '@fortawesome/free-solid-svg-icons'
+import {Badge, Button, Col, Dropdown, Form, Offcanvas, Row} from 'react-bootstrap';
+import { faSortAsc} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Pokemon from './components/Pokemon';
 import ControlledPages from './helpers/Pagination';
@@ -39,7 +39,9 @@ function App() {
                 <Col>
                   <Row className='control-bar'>
                     <Col md="2">
-                      <Button variant='dark' size='sm' onClick={() => setShow(true)}>View Favorites ({favPoke.length})</Button>
+                      <Button variant='dark' size='sm' onClick={() => setShow(true)}>
+                        View Favorites ({favPoke.length})
+                      </Button>
                     </Col>
                     <Col md="2">
                       <Dropdown>
@@ -48,9 +50,12 @@ function App() {
                         </Dropdown.Toggle>
                         <p style={{'textTransform':'capitalize', 'textAlign':'center'}}>{filter}</p>
                         <Dropdown.Menu>
+                          <Dropdown.Item onClick={() => setFilter('')}>All</Dropdown.Item>
                           {
                             !isLoadingTypes && pokemonTypes.results.map((pT:any) => (
-                              <Dropdown.Item style={{'textTransform':'capitalize'}} onClick={() => setFilter(pT.name)}>{pT.name}</Dropdown.Item>
+                              <Dropdown.Item style={{'textTransform':'capitalize'}} onClick={() => setFilter(pT.name)}>
+                                {pT.name}
+                              </Dropdown.Item>
                             ))
                           }                      
                         </Dropdown.Menu>
@@ -59,7 +64,9 @@ function App() {
                     <Col md="2">
                       <Button variant='light' size='sm' onClick={() => setSortAsc(!sortAsc)}>
                         {
-                          sortAsc ? <>Name Asc. <FontAwesomeIcon icon={faSortAsc}/></> : <>Name Desc. <FontAwesomeIcon icon={faSortAsc} style={{'transform':'rotate(180deg)'}}/></>
+                          sortAsc 
+                          ? <>Name Asc. <FontAwesomeIcon icon={faSortAsc}/></> 
+                          : <>Name Desc. <FontAwesomeIcon icon={faSortAsc} style={{'transform':'rotate(180deg)'}}/></>
                         }
                       </Button>
                     </Col>
@@ -67,27 +74,27 @@ function App() {
                   <Row>
                     <Col>
                       <Row>
-                        <Col>
-                          <Row>
-                            <Col className='poki-grid'>
-                            {
-                              pokemons.results
-                              .sort( sortAsc ? ((a:any, b:any) => a.name.localeCompare(b.name)) : ((a:any, b:any) => b.name.localeCompare(a.name)))
-                              .map((poke_data:any, index: number) => (
-                                <Pokemon key={index} id={poke_data.name+'_'+index} name={poke_data.name} filter={filter}/>
-                              ))
-                            }
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col className='pag-control'>
-                              <ControlledPages totalPages={Math.ceil(pokemons.count/20)} currentPage={currentPage} onPageChange={(num) => setCurrentPage(num)}/>
-                            </Col>
-                          </Row>
+                        <Col className='poki-grid'>
+                        {
+                          pokemons.results
+                          .sort( sortAsc 
+                            ? ((a:any, b:any) => a.name.localeCompare(b.name)) 
+                            : ((a:any, b:any) => b.name.localeCompare(a.name))
+                          )
+                          .map((poke_data:any, index: number) => (
+                            <Pokemon key={index} id={poke_data.name+'_'+index} name={poke_data.name} filter={filter}/>
+                          ))
+                        }
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col className='pag-control'>
+                          <ControlledPages totalPages={Math.ceil(pokemons.count/20)} 
+                          currentPage={currentPage} onPageChange={(num) => setCurrentPage(num)}/>
                         </Col>
                       </Row>
                     </Col>
-                  </Row>
+                  </Row> 
                 </Col>
               </Row>
               

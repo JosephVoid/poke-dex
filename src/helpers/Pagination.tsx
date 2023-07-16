@@ -23,7 +23,9 @@ export default function ControlledPages (props: IPagination) {
         pagesDisplay.map((pD, index) => (
           <>
             {
-              pD > 1 && pD < props.totalPages ? <Pagination.Item key={index} onClick={() => props.onPageChange(pD)}>{pD}</Pagination.Item> : null
+              pD > 1 && pD < props.totalPages 
+              ? <Pagination.Item key={index} onClick={() => props.onPageChange(pD)}>{pD}</Pagination.Item> 
+              : null
             }
           </>
         ))

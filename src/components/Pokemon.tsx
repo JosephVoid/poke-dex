@@ -38,7 +38,7 @@ export default function Pokemon (props:IPokemon) {
     setFavorite(!isfavorite)
   }
   
-  if (props.filter != '' && data.types.filter((t:any) => t.type.name === props.filter) == 0)
+  if (!isLoading && props.filter != '' && data.types.filter((t:any) => t.type.name === props.filter) == 0)
     return (<></>)
   else
     return (
@@ -56,11 +56,7 @@ export default function Pokemon (props:IPokemon) {
               {data.types.map((poke_type:any, index:number) => (
                 <Badge key={index} bg='dark'>{poke_type.type.name}</Badge>
               ))}
-              <OverlayTrigger
-                placement="right"
-                delay={{ show: 150, hide: 200 }}
-                overlay={renderTooltip}
-              >
+              <OverlayTrigger placement="right" delay={{ show: 150, hide: 200 }} overlay={renderTooltip}>
                 <FontAwesomeIcon icon={faStar} style={isfavorite ? favStyle : {}} onClick={() => handleFav()}/>
               </OverlayTrigger>
             </div>

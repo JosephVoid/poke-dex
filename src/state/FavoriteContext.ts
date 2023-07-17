@@ -8,5 +8,5 @@ export interface IPokeState {
 
 export const FavContext = createContext({
   favPoke: [] as IPokeState[],
-  setFavePoke: ([]) => {}
+  setFavePoke: (favList:IPokeState[]) => {}
 });

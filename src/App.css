@@ -80,5 +80,14 @@
 }
 
 .offcanvas{
-  width:20% !important;
+  width:15% !important;
+  text-align: center;
 } 
+
+.full-loading-overlay {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

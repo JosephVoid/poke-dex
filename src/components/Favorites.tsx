@@ -14,7 +14,12 @@ export default function Favorites (props: IFavorite) {
   const [isOnEdit, setIsOnEdit] = useState(false)
   const {favPoke, setFavePoke} = useContext(FavContext)
   const [name, setName] = useState(props.name)
-
+  /*
+    handleChange
+    ---------
+    Handles when the favorite is being edited.
+    Once doen it will handle saving the name
+  */
   const handleChange = () => {
     if (isOnEdit) {
       let copyFav = [...favPoke]

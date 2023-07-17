@@ -1,7 +1,7 @@
-import React, { useState, Suspense } from 'react';
+import { useState } from 'react';
 import './App.css';
 import PokiLogo from './pokidexlogo.png';
-import {Badge, Button, Col, Dropdown, Form, Offcanvas, Row} from 'react-bootstrap';
+import {Button, Col, Dropdown, Offcanvas, Row} from 'react-bootstrap';
 import { faSortAsc} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Pokemon from './components/Pokemon';
@@ -9,6 +9,7 @@ import ControlledPages from './helpers/Pagination';
 import useGetPokemons, {useGetPokemonTypes} from './helpers/Hooks';
 import { FavContext, IPokeState } from './state/FavoriteContext';
 import Favorites from './components/Favorites';
+import { ColorRing } from 'react-loader-spinner';
 
 function App() {
   const [show, setShow] = useState(false);
@@ -25,11 +26,21 @@ function App() {
         <div>
           {
             isLoading ? 
-            <> Loading </> :
+            <div className='full-loading-overlay'> 
+              <ColorRing
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="blocks-loading"
+              wrapperStyle={{}}
+              wrapperClass="blocks-wrapper"
+              colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+              /> 
+            </div> :
             <>
               <Row>
                 <Col className='title-img'>
-                  <img src={PokiLogo} />
+                  <img src={PokiLogo} alt='theLogo'/>
                 </Col>
               </Row>
               <Row className='header-text'>
@@ -103,6 +114,9 @@ function App() {
                   <Offcanvas.Title>Favorites</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
+                  {
+                    favPoke.length === 0 ? 'No Favorites' : ''
+                  }
                   {
                     favPoke.map(fP => (
                       <Favorites name={fP.name} picture={fP.picture}/>

@@ -1,6 +1,7 @@
 import { createContext } from 'react';
 
 export interface IPokeState {
+  id: string,
   name: string,
   picture: string
 }

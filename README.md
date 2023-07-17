@@ -15,3 +15,14 @@ alot about pokemons and most importantly Pagination as it was a challenge to dis
 # Then run by
 ### `yarn start` or
 ### `npm start`
+
+# How to use
+- Click on the star to add a pokemon to favorites
+- Click it again to remove it
+- Click edit name inside the favorites section, and edit name accordingly
+- Click Name to sort by Ascending/Descending
+- Click on Filter Pokemon Type to filter in the pokemons that have that specfic trait, then filter the rest out
+- Interact with the pagination to goto other pages of pokemon
+
+# Live Deployed at
+https://master--spectacular-starlight-2a3c28.netlify.app/
